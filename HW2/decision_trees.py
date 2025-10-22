@@ -13,7 +13,20 @@ class Node:
         if self.is_leaf:
             return f"Leaf(prediction={self.prediction}, prob={self.leaf_probability:.2f})"
         else:
-            return f"Node(feature={self.feature_index}, threshold={self.threshold:.2f}) Right({self.right}) Left({self.left})"
+            return f"Node(feature={self.feature_index}, threshold={self.threshold:.2f}) Left[{self.left}] Right[{self.right}]"
+        
+    def get_feature_name(self):
+        if self.feature_index is None:
+            return "Unknown feature"
+        
+        # We hard code the values in this simple case, 
+        # where we know the first feature is the exam 1 score and the second feature is the exam score 2
+        if self.feature_index == 0:
+            return "Exam 1"
+        elif self.feature_index == 1:
+            return "Exam 2"
+        else:
+            return "Unknown feature"
 
 
 def load_data(filename='ex2data1.txt'):
@@ -219,6 +232,16 @@ def calculate_best_information_gain(X, y, x1_midpoints, x2_midpoints):
     return best_threshold, best_feature_index, max_info_gain, min_entropy, min_X_top, min_X_bottom, min_y_top, min_y_bottom
 
 def majority(targets):
+    """
+    Returns the majority class label from the target vector.
+    This works for binary classification (0s and 1s) only.
+
+    Inputs:
+    - targets: A numpy array of shape (n_samples,) containing the target labels (0s and 1s).
+
+    Outputs:
+    - The majority class label (0 or 1).
+    """
     total = len(targets)
     midpoint = total / 2
     positive_count = np.sum(targets)
@@ -228,6 +251,12 @@ def majority(targets):
         return 0
     
 def target_value_probability(targets, value):
+    """
+    Calculates the proportion of a specific target value in the given target vector (m,).
+    Inputs:
+    - targets: A numpy array of shape (m,) containing the target labels (0s and 1s).
+    - value: The specific target value (0 or 1) for which to calculate the proportion.
+    """
     total = len(targets)
     positive_count = np.sum(targets)
     negative_count = total - positive_count
@@ -237,9 +266,21 @@ def target_value_probability(targets, value):
         return negative_count / total
 
 
-
 def build_decision_tree(X, y):
-    max_depth = 10
+    """
+    Builds a decision tree classifier.
+    It recursively splits the data based on feature thresholds to create a tree structure.
+    The thresholds are calculated using the training data: it will find the midpoints for the consecutive feature values
+    and test them as potential splits.
+
+    Inputs:
+    - X: A numpy matrix (m x n) containing the feature values.
+    - y: A numpy vector (m,) containing the target labels (0s and 1s).
+
+    Output:
+    - root: The root node of the decision tree.
+    """
+    max_depth = 100
 
     def build_decision_tree_helper(X_current, y_current, level):
 
@@ -247,7 +288,8 @@ def build_decision_tree(X, y):
         # if the current node has all the labels in y identical (entropy=0)
         node_entropy = calculate_entropy(y_current)
         if node_entropy <= 0:
-            return Node(is_leaf=True, prediction=majority(y_current), leaf_probability=np.mean(y_current))
+            prediction = majority(y_current)
+            return Node(is_leaf=True, prediction=prediction, leaf_probability=target_value_probability(y_current, prediction))
 
         exam1_feature = X_current[:, 0] # Select all rows, first column
         exam2_feature = X_current[:, 1] # Select all rows, second column
@@ -282,11 +324,76 @@ def build_decision_tree(X, y):
     # Build tree starting with all the data as a whole        
     return build_decision_tree_helper(X, y, 1)
 
+def print_tree(root):
+    """
+    Prints the decision tree in an easy to read tree structure.
+    Inputs:
+    - root: The root node of the decision tree.
+    """
+    print('Tree structure:')
+    if root is None:
+        print('No tree to print')
 
+    def print_tree_helper(node, indent):
+        if node is None:
+            return
+        
+        if node.is_leaf:
+            print(f"{indent}Leaf: Prediction={node.prediction}, Proportion={node.leaf_probability:.2f}")
+            return
+        
+        # Print decision node
+        feature_name = node.get_feature_name()
+        print(f"{indent}|{feature_name}")
+        print(f"{indent}|- < {node.threshold:.2f}:")
+        print_tree_helper(node.left, indent + "|  ")
+        print(f"{indent}|- >= {node.threshold:.2f}:")
+        print_tree_helper(node.right, indent + "|  ")
 
+    print_tree_helper(root, "")
+
+def predict(tree, x):
+    """
+    Predicts the class label for a single sample using the trained decision tree.
+    Returns the predicted label and the proportion of the predicated label inside the leaf node.
+    For example, if the predicted label 1 is and the leaf node has samples with only 1s, then the proportion would be 1.0.
+    For example, if the predicted label is 0 and the leaf node has only 3 samples with (0, 0, 1), then the proportion would be 0.6667.
+
+    Inputs:
+    - tree: The root node of the decision tree.
+    - x: A numpy array of shape (n_features,) containing the feature values for the sample.
+
+    Outputs:
+    - prediction: The predicted class label (0 or 1).
+    - proportion: The proportion of the predicted class inside the leaf node.
+    """
+
+    # Traverse the tree
+    current_node = tree
+
+    # Loop until we reach a leaf node
+    while not current_node.is_leaf:
+
+        # Check the feature value and compare it to the threshold
+        if x[current_node.feature_index] >= current_node.threshold:
+
+            # Move to the right node
+            current_node = current_node.right
+        else:
+
+            # Move to the left node
+            current_node = current_node.left
+
+    # We reached a leaf node. Return the prediction
+    return current_node.prediction, current_node.leaf_probability
 
 # Get features matrix (X), target vector (y) and dimensions
 X, y, m, n = load_data()
 
 root = build_decision_tree(X, y)
-print('root', root)
+print('Tree built.')
+print_tree(root)
+
+print('Predicting label for student with scores (Exam 1: 45, Exam 2: 85):')
+prediction, proportion = predict(root, np.array([45, 85]))
+print('Prediction:', prediction)
