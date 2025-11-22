@@ -3,7 +3,7 @@ import numpy as np
 import pandas as pd
 import os
 
-data_path = "../../"
+data_path = "./"
 
 categories = ["Normal","Osteopenia", "Osteoporosis"]
 
