@@ -11,6 +11,11 @@
 #SBATCH --mail-user=jriveramiranda@scu.edu
 #SBATCH --mail-type=END
 
+# Handle arguments. Use the first argument as the file name if provided.
+PYFILE=${1:-knee-osteo.py}
+
+echo "Running Python script: $PYFILE"
+
 # Load software for Python
 module load Python
 
@@ -18,4 +23,4 @@ module load Python
 cd /WAVE/projects2/CSEN-240-Fall25/jriveramiranda
 
 # Run the program
-srun python3 knee-osteo.py
+srun python3 "$PYFILE"
