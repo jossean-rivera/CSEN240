@@ -217,7 +217,7 @@ def create_xception_model(input_shape, num_classes=8, learning_rate=1e-4):
     # Regularization helps prevent overfitting by penalizing large weights in the model.
     # but it can also lead to underfitting if the penalty is too high.
     # Adjust the penalty factory as needed.
-    x = Dense(512, activation="relu", kernel_regularizer=regularizers.l2(0.01))(x)    
+    x = Dense(512, activation="relu", kernel_regularizer=regularizers.l2(0.001))(x)    
     x = BatchNormalization(name="Batch_Normalization")(x)
     x = Dropout(0.25, name="Dropout")(x)
     outputs = Dense(num_classes, activation="softmax",name="Output_Layer")(x)
