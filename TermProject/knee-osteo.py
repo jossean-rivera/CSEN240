@@ -198,6 +198,7 @@ from tensorflow.keras.applications import Xception
 from tensorflow.keras.models import Model
 from tensorflow.keras.layers import (Input, GlobalAveragePooling2D, Dense, Dropout, BatchNormalization, GaussianNoise, MultiHeadAttention, Reshape)
 from tensorflow.keras.optimizers import Adam
+from tensorflow.keras import regularizers
 
 def create_xception_model(input_shape, num_classes=8, learning_rate=1e-4):
     inputs = Input(shape=input_shape, name="Input_Layer")
@@ -210,7 +211,13 @@ def create_xception_model(input_shape, num_classes=8, learning_rate=1e-4):
     x = Reshape((height, width, channels), name="Reshape_to_Spatial")(x)
     x = GaussianNoise(0.25, name="Gaussian_Noise")(x)
     x = GlobalAveragePooling2D(name="Global_Avg_Pooling")(x)
-    x = Dense(512, activation="relu", name="FC_512")(x)
+
+    # Add Dense layaers with L2 regularization. Leave the activation function as ReLU.
+    # Use 0.1 as the penalty factor for L2 regularization.
+    # Regularization helps prevent overfitting by penalizing large weights in the model.
+    # but it can also lead to underfitting if the penalty is too high.
+    # Adjust the penalty factory as needed.
+    x = Dense(512, activation="relu", kernel_regularizer=regularizers.l2(0.01))(x)    
     x = BatchNormalization(name="Batch_Normalization")(x)
     x = Dropout(0.25, name="Dropout")(x)
     outputs = Dense(num_classes, activation="softmax",name="Output_Layer")(x)
