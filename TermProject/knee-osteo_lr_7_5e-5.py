@@ -1,11 +1,11 @@
 print('Modeling Knee Osteoarthritis')
 print('============================')
 print('Current test:')
-print('- Set learning rate to 1e-5')
+print('- Set learning rate to 7.5e-5')
 print('============================')
 
-# Set learning rate to 1e-5
-LR = 1e-5
+# Set learning rate to 7.5e-5
+LR = 7.5e-5
 
 # %%
 import numpy as np
