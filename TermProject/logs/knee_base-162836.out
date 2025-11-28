@@ -1,0 +1,115 @@
+Running Python script: knee-osteo-l2-0005.py
+/WAVE/projects2/CSEN-240-Fall25/jriveramiranda/knee-osteo-l2-0005.py:48: FutureWarning: 
+
+Passing `palette` without assigning `hue` is deprecated and will be removed in v0.14.0. Assign the `x` variable to `hue` and set `legend=False` for the same effect.
+
+  sns.countplot(data=df, x="label", palette="viridis", ax=ax)
+2025-11-27 16:24:23.198646: I tensorflow/core/platform/cpu_feature_guard.cc:210] This TensorFlow binary is optimized to use available CPU instructions in performance-critical operations.
+To enable the following instructions: AVX2 AVX512F FMA, in other operations, rebuild TensorFlow with the appropriate compiler flags.
+Modeling Knee Osteoarthritis
+============================
+Current test:
+- L2 Regularization added with 0.0005 penalty factor.
+============================
+Data Frame dimentions: (3780, 2)
+Dupplicated sum: 0
+IsNull sum:
+image_path    0
+label         0
+dtype: int64
+Data Frame Info
+<class 'pandas.core.frame.DataFrame'>
+RangeIndex: 3780 entries, 0 to 3779
+Data columns (total 2 columns):
+ #   Column      Non-Null Count  Dtype 
+---  ------      --------------  ----- 
+ 0   image_path  3780 non-null   object
+ 1   label       3780 non-null   object
+dtypes: object(2)
+memory usage: 59.2+ KB
+Unique labels: ['Normal' 'Osteopenia' 'Osteoporosis']
+Label counts: label
+Normal          1260
+Osteopenia      1260
+Osteoporosis    1260
+Name: count, dtype: int64
+
+Class distribution after oversampling:
+category_encoded
+0    1260
+1    1260
+2    1260
+Name: count, dtype: int64
+                                            image_path  category_encoded
+0                         ./train/Normal/N4_aug_5.jpeg                 0
+1                        ./train/Normal/N22_aug_4.jpeg                 0
+2                        ./train/Normal/N15_aug_4.jpeg                 0
+3                        ./train/Normal/Normal 290.png                 0
+4                       ./train/Normal/Normal 169.JPEG                 0
+...                                                ...               ...
+3775               ./train/Osteoporosis/OS2_aug_0.jpeg                 2
+3776  ./train/Osteoporosis/Osteoporosis 473_aug_0.jpeg                 2
+3777              ./train/Osteoporosis/OS49_aug_0.jpeg                 2
+3778  ./train/Osteoporosis/Osteoporosis 311_aug_0.jpeg                 2
+3779         ./train/Osteoporosis/Osteoporosis 518.jpg                 2
+
+[3780 rows x 2 columns]
+check
+(3024, 2)
+(756, 2)
+(378, 2)
+(378, 2)
+Found 3024 validated image filenames belonging to 3 classes.
+Found 378 validated image filenames belonging to 3 classes.
+Found 378 validated image filenames belonging to 3 classes.
+WARNING: All log messages before absl::InitializeLog() is called are written to STDERR
+W0000 00:00:1764289469.051779 3195026 gpu_device.cc:2342] Cannot dlopen some GPU libraries. Please make sure the missing libraries mentioned above are installed properly if you would like to use GPU. Follow the guide at https://www.tensorflow.org/install/gpu for how to download and setup the required libraries for your platform.
+Skipping registering GPU devices...
+Num GPUs Available:  0
+Epoch 1/250
+189/189 ━━━━━━━━━━━━━━━━━━━━ 1448s 8s/step - accuracy: 0.5212 - loss: 1.5206 - val_accuracy: 0.6376 - val_loss: 1.2350
+Epoch 2/250
+189/189 ━━━━━━━━━━━━━━━━━━━━ 1449s 8s/step - accuracy: 0.6552 - loss: 1.1870 - val_accuracy: 0.5317 - val_loss: 1.6168
+Epoch 3/250
+189/189 ━━━━━━━━━━━━━━━━━━━━ 1450s 8s/step - accuracy: 0.6664 - loss: 1.1463 - val_accuracy: 0.6534 - val_loss: 1.2023
+Epoch 4/250
+189/189 ━━━━━━━━━━━━━━━━━━━━ 1452s 8s/step - accuracy: 0.6859 - loss: 1.0894 - val_accuracy: 0.5952 - val_loss: 1.2694
+Epoch 5/250
+189/189 ━━━━━━━━━━━━━━━━━━━━ 1456s 8s/step - accuracy: 0.7221 - loss: 0.9828 - val_accuracy: 0.6693 - val_loss: 1.2406
+Epoch 6/250
+189/189 ━━━━━━━━━━━━━━━━━━━━ 1456s 8s/step - accuracy: 0.7370 - loss: 0.9389 - val_accuracy: 0.7011 - val_loss: 1.1318
+Epoch 7/250
+189/189 ━━━━━━━━━━━━━━━━━━━━ 1454s 8s/step - accuracy: 0.7544 - loss: 0.9038 - val_accuracy: 0.7249 - val_loss: 1.0325
+Epoch 8/250
+189/189 ━━━━━━━━━━━━━━━━━━━━ 1456s 8s/step - accuracy: 0.7758 - loss: 0.8291 - val_accuracy: 0.7063 - val_loss: 1.0975
+Epoch 9/250
+189/189 ━━━━━━━━━━━━━━━━━━━━ 1456s 8s/step - accuracy: 0.8146 - loss: 0.7450 - val_accuracy: 0.6746 - val_loss: 1.0912
+Epoch 10/250
+189/189 ━━━━━━━━━━━━━━━━━━━━ 1458s 8s/step - accuracy: 0.8496 - loss: 0.6896 - val_accuracy: 0.6481 - val_loss: 1.1788
+Epoch 11/250
+189/189 ━━━━━━━━━━━━━━━━━━━━ 1458s 8s/step - accuracy: 0.8528 - loss: 0.6450 - val_accuracy: 0.7619 - val_loss: 1.0136
+Epoch 12/250
+189/189 ━━━━━━━━━━━━━━━━━━━━ 1456s 8s/step - accuracy: 0.8593 - loss: 0.5936 - val_accuracy: 0.5265 - val_loss: 2.0507
+Epoch 13/250
+189/189 ━━━━━━━━━━━━━━━━━━━━ 1455s 8s/step - accuracy: 0.8721 - loss: 0.5792 - val_accuracy: 0.6958 - val_loss: 1.0763
+Epoch 14/250
+189/189 ━━━━━━━━━━━━━━━━━━━━ 1459s 8s/step - accuracy: 0.8742 - loss: 0.5679 - val_accuracy: 0.6614 - val_loss: 1.1058
+Epoch 15/250
+189/189 ━━━━━━━━━━━━━━━━━━━━ 1457s 8s/step - accuracy: 0.8854 - loss: 0.5177 - val_accuracy: 0.7381 - val_loss: 1.0977
+Epoch 16/250
+189/189 ━━━━━━━━━━━━━━━━━━━━ 1455s 8s/step - accuracy: 0.9036 - loss: 0.4714 - val_accuracy: 0.5397 - val_loss: 2.3527
+24/24 ━━━━━━━━━━━━━━━━━━━━ 64s 3s/step 
+
+PPO Loss on Validation Data: -0.99999225
+24/24 ━━━━━━━━━━━━━━━━━━━━ 63s 3s/step 
+Classification Report:
+              precision    recall  f1-score   support
+
+           0       0.84      0.77      0.80       126
+           1       0.74      0.79      0.76       126
+           2       0.76      0.77      0.77       126
+
+    accuracy                           0.78       378
+   macro avg       0.78      0.78      0.78       378
+weighted avg       0.78      0.78      0.78       378
+
