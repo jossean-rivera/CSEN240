@@ -21,6 +21,9 @@ Objective: Change hyper paremeters trying to improve the model's f1 scores.
 |[knee-osteo_lr_7_5e-5.py](/TermProject/knee-osteo_lr_7_5e-5.py)|Set learning rate to 7.5e-5|[knee_base-162866.out](/TermProject/logs/knee_base-162866.out)|0.71,0.76,0.73|
 |[knee-osteo_lr_8e-5.py](/TermProject/knee-osteo_lr_8e-5.py)|Set learning rate to 8e-5|[knee_base-162867.out](/TermProject/logs/knee_base-162867.out)|0.73,0.75,0.69|
 |[knee-osteo_lr_9e-5.py](/TermProject/knee-osteo_lr_9e-5.py)|Set learning rate to 9e-5|[knee_base-162868.out](/TermProject/logs/knee_base-162868.out)|0.78,0.76,0.70|
+|[knee-osteo-l2-1e-3_lr_9e-5.py](/TermProject/knee-osteo-l2-1e-3_lr_9e-5.py)|L2 reg. 1e-3 penalty + LR = 9e-5|[knee_base-162965.out](/TermProject/logs/knee_base-162965.out)|-|
+|[knee-osteo-l2-1e-3_lr_9e-5_dense_layer.py](/TermProject/knee-osteo-l2-1e-3_lr_9e-5_dense_layer.py)|L2 reg. 1e-3 penalty + LR = 9e-5 + 1 extra dense layer|[knee_base-162967.out](/TermProject/logs/knee_base-162967.out)|-|
+|[knee-osteo-l2-1e-3_lr_9e-5_dense_layer_conv.py](/TermProject/knee-osteo-l2-1e-3_lr_9e-5_dense_layer_conv.py)|L2 reg. 1e-3 penalty + LR = 9e-5 + 1 extra dense layer + Convolutional layer|[knee_base-162970.out](/TermProject/logs/knee_base-162970.out)|-|
 
 ### Tested Learning Rates
 
