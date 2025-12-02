@@ -24,6 +24,10 @@ Objective: Change hyper paremeters trying to improve the model's f1 scores.
 |[knee-osteo-l2-1e-3_lr_9e-5.py](/TermProject/knee-osteo-l2-1e-3_lr_9e-5.py)|L2 reg. 1e-3 penalty + LR = 9e-5|[knee_base-162965.out](/TermProject/logs/knee_base-162965.out)|0.74,0.71,0.69|
 |[knee-osteo-l2-1e-3_lr_9e-5_dense_layer.py](/TermProject/knee-osteo-l2-1e-3_lr_9e-5_dense_layer.py)|L2 reg. 1e-3 penalty + LR = 9e-5 + 1 extra dense layer|[knee_base-162967.out](/TermProject/logs/knee_base-162967.out)|0.79,0.79,0.69|
 |[knee-osteo-l2-1e-3_lr_9e-5_dense_layer_conv.py](/TermProject/knee-osteo-l2-1e-3_lr_9e-5_dense_layer_conv.py)|L2 reg. 1e-3 penalty + LR = 9e-5 + 1 extra dense layer + Convolutional layer|[knee_base-162970.out](/TermProject/logs/knee_base-162970.out)|0.61,0.71,0.85|
+|[knee-osteo_sigmoid.py](/TermProject/knee-osteo_sigmoid.py)|Use sigmoid activation function|[knee_base-163183.out](/TermProject/logs/knee_base-163183.out)|-|
+|[knee-osteo_tanh.py](/TermProject/knee-osteo_tanh.py)|Use tanh activation function|[knee_base-163184.out](/TermProject/logs/knee_base-163184.out)|-|
+|[knee-osteo_lr_9e-5_sigmoid.py](/TermProject/knee-osteo_tanh.py)|LR = 9e-5 + sigmoid activation|[knee_base-163185.out](/TermProject/logs/knee_base-163185.out)|-|
+|[knee-osteo_lr_9e-5_tanh.py](/TermProject/knee-osteo_lr_9e-5_tanh.py)|LR = 9e-5 + tanh activation|[knee_base-163186.out](/TermProject/logs/knee_base-163186.out)|-|
 
 ### Tested Learning Rates
 
