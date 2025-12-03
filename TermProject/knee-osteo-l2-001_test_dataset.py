@@ -173,6 +173,9 @@ for category in categories:
 test_dataset_df = pd.DataFrame({"image_path": test_image_paths, "label": test_labels})
 test_dataset_df['category_encoded'] = label_encoder.transform(test_dataset_df['label'])
 
+# Make sure the 'category_encoded' column is of type string
+test_dataset_df['category_encoded'] = test_dataset_df['category_encoded'].astype(str)
+
 # %%
 batch_size = 16
 img_size = (224, 224)
