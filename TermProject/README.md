@@ -28,11 +28,10 @@ Objective: Change hyper paremeters trying to improve the model's f1 scores.
 |[knee-osteo_tanh.py](/TermProject/knee-osteo_tanh.py)|Use tanh activation function|[knee_base-163184.out](/TermProject/logs/knee_base-163184.out)|0.77,0.77,0.74|
 |[knee-osteo_lr_9e-5_sigmoid.py](/TermProject/knee-osteo_tanh.py)|LR = 9e-5 + sigmoid activation|[knee_base-163185.out](/TermProject/logs/knee_base-163185.out)|0.71,0.38,0.63|
 |[knee-osteo_lr_9e-5_tanh.py](/TermProject/knee-osteo_lr_9e-5_tanh.py)|LR = 9e-5 + tanh activation|[knee_base-163186.out](/TermProject/logs/knee_base-163186.out)|0.73,0.72,0.66|
-|[knee-osteo-l2-001_tanh.py](/TermProject/knee-osteo_lr_9e-5_tanh.py)|L2 reg. with 0.001 + tanh activation|[knee_base-163314.out](/TermProject/logs/knee_base-163314.out)|-|
+|[knee-osteo-l2-001_tanh.py](/TermProject/knee-osteo_lr_9e-5_tanh.py)|L2 reg. with 0.001 + tanh activation|[knee_base-163314.out](/TermProject/logs/knee_base-163314.out)|0.77,0.77,0.73|
 |[knee-osteo-l2-001_test_dataset.py](/TermProject/knee-osteo-l2-001_test_dataset.py)|Use test dataset with L2 reg. with 0.001 penalty|[knee_base-163376.out](/TermProject/logs/knee_base-163376.out)|-|
 |[knee-osteo-l2-001_tanh_test_dataset.py](/TermProject/knee-osteo-l2-001_tanh_test_dataset.py)|Use test dataset with L2 reg. with 0.001 penalty + tanh activation function|[knee_base-163392.out](/TermProject/logs/knee_base-163392.out)|-|
 |[knee-osteo-l2-001-drop-02-ladder-cnn.py](/TermProject/knee-osteo-l2-001-drop-02-ladder-cnn.py)|L2 reg. with 0.001 + dropout with .02 and Layer restructure|[knee_base-163248.out](/TermProject/logs/knee_base-163248)|0.77,0.74,0.69|
-
 
 ### Tested Learning Rates
 
