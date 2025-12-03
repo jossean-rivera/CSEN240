@@ -23,13 +23,13 @@ Objective: Change hyper paremeters trying to improve the model's f1 scores.
 |[knee-osteo_lr_9e-5.py](/TermProject/knee-osteo_lr_9e-5.py)|Set learning rate to 9e-5|[knee_base-162868.out](/TermProject/logs/knee_base-162868.out)|0.78,0.76,0.70|
 |[knee-osteo-l2-1e-3_lr_9e-5.py](/TermProject/knee-osteo-l2-1e-3_lr_9e-5.py)|L2 reg. 1e-3 penalty + LR = 9e-5|[knee_base-162965.out](/TermProject/logs/knee_base-162965.out)|0.74,0.71,0.69|
 |[knee-osteo-l2-1e-3_lr_9e-5_dense_layer.py](/TermProject/knee-osteo-l2-1e-3_lr_9e-5_dense_layer.py)|L2 reg. 1e-3 penalty + LR = 9e-5 + 1 extra dense layer|[knee_base-162967.out](/TermProject/logs/knee_base-162967.out)|0.79,0.79,0.69|
-|[knee-osteo-l2-1e-3_lr_9e-5_dense_layer_conv.py](/TermProject/knee-osteo-l2-1e-3_lr_9e-5_dense_layer_conv.py)|L2 reg. 1e-3 penalty + LR = 9e-5 + 1 extra dense layer + Convolutional layer|[knee_base-162970.out](/TermProject/logs/knee_base-162970.out)|0.61,0.71,0.85|
+|[knee-osteo-l2-1e-3_lr_9e-5_dense_layer_conv.py](/TermProject/knee-osteo-l2-1e-3_lr_9e-5_dense_layer_conv.py)|L2 reg. 1e-3 penalty + LR = 9e-5 + 1 extra dense layer + Convolutional layer|[knee_base-162970.out](/TermProject/logs/knee_base-162970.out)|0.61,0.71,0.68|
 |[knee-osteo_sigmoid.py](/TermProject/knee-osteo_sigmoid.py)|Use sigmoid activation function|[knee_base-163183.out](/TermProject/logs/knee_base-163183.out)|0.61,0.57,0.49|
 |[knee-osteo_tanh.py](/TermProject/knee-osteo_tanh.py)|Use tanh activation function|[knee_base-163184.out](/TermProject/logs/knee_base-163184.out)|0.77,0.77,0.74|
 |[knee-osteo_lr_9e-5_sigmoid.py](/TermProject/knee-osteo_tanh.py)|LR = 9e-5 + sigmoid activation|[knee_base-163185.out](/TermProject/logs/knee_base-163185.out)|0.71,0.38,0.63|
 |[knee-osteo_lr_9e-5_tanh.py](/TermProject/knee-osteo_lr_9e-5_tanh.py)|LR = 9e-5 + tanh activation|[knee_base-163186.out](/TermProject/logs/knee_base-163186.out)|0.73,0.72,0.66|
 |[knee-osteo-l2-001_tanh.py](/TermProject/knee-osteo_lr_9e-5_tanh.py)|L2 reg. with 0.001 + tanh activation|[knee_base-163314.out](/TermProject/logs/knee_base-163314.out)|-|
-|[knee-osteo-l2-001_test_dataset.py](/TermProject/knee-osteo-l2-001_test_dataset.py)|Use test dataset with L2 reg. with 0.001 penalty|[knee_base-163328.out](/TermProject/logs/knee_base-163328.out)|-|
+|[knee-osteo-l2-001_test_dataset.py](/TermProject/knee-osteo-l2-001_test_dataset.py)|Use test dataset with L2 reg. with 0.001 penalty|[knee_base-163376.out](/TermProject/logs/knee_base-163376.out)|-|
 
 ### Tested Learning Rates
 
