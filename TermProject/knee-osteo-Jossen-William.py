@@ -85,8 +85,8 @@ categories = ["Normal", "Osteopenia", "Osteoporosis"]
 
 # --- Load data for each set separately ---
 train_image_paths, train_labels = load_data_from_dir(os.path.join(data_path, "train"), categories)
-valid_image_paths, valid_labels = load_data_from_dir(os.path.join(data_path, "val"), categories) # Assuming 'val' folder
-test_image_paths, test_labels = load_data_from_dir(os.path.join(data_path, "test"), categories) # Assuming 'test' folder
+valid_image_paths, valid_labels = load_data_from_dir(os.path.join(data_path, "val"), categories) 
+test_image_paths, test_labels = load_data_from_dir(os.path.join(data_path, "test"), categories) 
 
 
 if not train_image_paths and not valid_image_paths and not test_image_paths:
@@ -94,7 +94,6 @@ if not train_image_paths and not valid_image_paths and not test_image_paths:
     print("FATAL ERROR: No images found. Check your 'data_path' and directory structure.")
     print(f"Expected structure: {data_path}/train/Normal/image.jpg, {data_path}/val/Normal/image.jpg, etc.")
     print("="*80)
-    # exit() # Uncomment this to stop the script if no data is found
 
 
 # In[4]:
@@ -145,7 +144,6 @@ if not train_df.empty:
             (p.get_x() + p.get_width() / 2., p.get_height()),
             ha='center', va='bottom', fontsize=11, color='black',
             xytext=(0, 5), textcoords='offset points')
-    #plt.show() # Disabled for non-interactive script
 
     label_counts = train_df["label"].value_counts()
     fig, ax = plt.subplots(figsize=(8, 6))
@@ -156,7 +154,6 @@ if not train_df.empty:
     wedgeprops={'edgecolor': 'black', 'linewidth': 1})
     ax.set_title("Distribution of Tumor Types (Train) - Pie Chart", fontsize=14,
     fontweight='bold')
-    #plt.show() # Disabled for non-interactive script
 
 
 # In[7]:
@@ -242,8 +239,6 @@ else:
 
 # In[10]:
 
-
-# --- This line `astype(str)` is REMOVED. (No change needed) ---
 
 
 # In[11]:
@@ -333,7 +328,6 @@ print(f"Num GPUs Available: {torch.cuda.device_count()}")
 
 
 # --- PyTorch Change: GaussianNoise layer ---
-# Keras GaussianNoise layer equivalent in PyTorch
 class GaussianNoise(nn.Module):
     """Gaussian noise regularizer.
     Args:
@@ -471,7 +465,6 @@ cnn_model = ResNetWithAttention(num_classes=num_classes).to(device)
 
 
 # L2 regularization is 'weight_decay' in the PyTorch optimizer
-# Your L2 penalty was 1e-3
 optimizer = optim.Adam(cnn_model.parameters(), lr=LR, weight_decay=1e-3)
 criterion = nn.CrossEntropyLoss()
 
@@ -480,16 +473,12 @@ print("\n" + "="*80)
 print("MODEL ARCHITECTURE (using ResNet-50 base, updated layers)")
 print("========================================================")
 print(cnn_model)
-# A more detailed summary can be obtained with torchsummary
-# from torchsummary import summary
-# summary(cnn_model, input_size=(3, 224, 224))
 
 
 # In[14]:
 
 
 # --- PyTorch Change: Manual Training and Validation Loop ---
-# This replaces `model.fit()`
 
 history = {
     'accuracy': [],
@@ -600,8 +589,6 @@ else:
 # In[15]:
 
 
-# --- PPO Loss calculation is commented out ---
-
 
 # In[16]:
 
@@ -638,7 +625,6 @@ else:
 
 
 # --- Evaluation on Test Set ---
-# This evaluation now runs on the data loaded directly from your './test' folder.
 if test_df_new.empty:
     print("Test DataFrame is empty. Skipping final evaluation.")
 else:
