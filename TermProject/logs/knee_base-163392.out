@@ -1,0 +1,119 @@
+[jriveramiranda@login02 jriveramiranda]$ cat knee_base-163392.out
+Running Python script: knee-osteo-l2-001_tanh_test_dataset.py
+/WAVE/projects2/CSEN-240-Fall25/jriveramiranda/knee-osteo-l2-001_tanh_test_dataset.py:50: FutureWarning: 
+
+Passing `palette` without assigning `hue` is deprecated and will be removed in v0.14.0. Assign the `x` variable to `hue` and set `legend=False` for the same effect.
+
+  sns.countplot(data=df, x="label", palette="viridis", ax=ax)
+2025-12-02 22:58:49.443909: I tensorflow/core/platform/cpu_feature_guard.cc:210] This TensorFlow binary is optimized to use available CPU instructions in performance-critical operations.
+To enable the following instructions: AVX2 AVX512F FMA, in other operations, rebuild TensorFlow with the appropriate compiler flags.
+Modeling Knee Osteoarthritis
+============================
+Current test:
+- L2 Regularization added with 0.001 penalty factor.
+- Use tanh activation function in Dense layer.
+- Using test_dataset folder for data.
+============================
+Data Frame dimentions: (3780, 2)
+Dupplicated sum: 0
+IsNull sum:
+image_path    0
+label         0
+dtype: int64
+Data Frame Info
+<class 'pandas.core.frame.DataFrame'>
+RangeIndex: 3780 entries, 0 to 3779
+Data columns (total 2 columns):
+ #   Column      Non-Null Count  Dtype 
+---  ------      --------------  ----- 
+ 0   image_path  3780 non-null   object
+ 1   label       3780 non-null   object
+dtypes: object(2)
+memory usage: 59.2+ KB
+Unique labels: ['Normal' 'Osteopenia' 'Osteoporosis']
+Label counts: label
+Normal          1260
+Osteopenia      1260
+Osteoporosis    1260
+Name: count, dtype: int64
+
+Class distribution after oversampling:
+category_encoded
+0    1260
+1    1260
+2    1260
+Name: count, dtype: int64
+                                            image_path  category_encoded
+0                         ./train/Normal/N4_aug_5.jpeg                 0
+1                        ./train/Normal/N22_aug_4.jpeg                 0
+2                        ./train/Normal/N15_aug_4.jpeg                 0
+3                        ./train/Normal/Normal 290.png                 0
+4                       ./train/Normal/Normal 169.JPEG                 0
+...                                                ...               ...
+3775               ./train/Osteoporosis/OS2_aug_0.jpeg                 2
+3776  ./train/Osteoporosis/Osteoporosis 473_aug_0.jpeg                 2
+3777              ./train/Osteoporosis/OS49_aug_0.jpeg                 2
+3778  ./train/Osteoporosis/Osteoporosis 311_aug_0.jpeg                 2
+3779         ./train/Osteoporosis/Osteoporosis 518.jpg                 2
+
+[3780 rows x 2 columns]
+check
+(3742, 2)
+(38, 2)
+(19, 2)
+(19, 2)
+Found 3742 validated image filenames belonging to 3 classes.
+Found 19 validated image filenames belonging to 3 classes.
+Found 19 validated image filenames belonging to 3 classes.
+Found 540 validated image filenames belonging to 3 classes.
+WARNING: All log messages before absl::InitializeLog() is called are written to STDERR
+W0000 00:00:1764745134.312526 3623489 gpu_device.cc:2342] Cannot dlopen some GPU libraries. Please make sure the missing libraries mentioned above are installed properly if you would like to use GPU. Follow the guide at https://www.tensorflow.org/install/gpu for how to download and setup the required libraries for your platform.
+Skipping registering GPU devices...
+Num GPUs Available:  0
+Epoch 1/250
+234/234 ━━━━━━━━━━━━━━━━━━━━ 1704s 7s/step - accuracy: 0.5413 - loss: 2.1954 - val_accuracy: 0.7368 - val_loss: 1.3175
+Epoch 2/250
+234/234 ━━━━━━━━━━━━━━━━━━━━ 1695s 7s/step - accuracy: 0.6154 - loss: 1.6609 - val_accuracy: 0.7895 - val_loss: 1.3664
+Epoch 3/250
+234/234 ━━━━━━━━━━━━━━━━━━━━ 1696s 7s/step - accuracy: 0.6649 - loss: 1.5472 - val_accuracy: 0.6316 - val_loss: 1.5153
+Epoch 4/250
+234/234 ━━━━━━━━━━━━━━━━━━━━ 1697s 7s/step - accuracy: 0.6961 - loss: 1.4536 - val_accuracy: 0.6842 - val_loss: 1.1673
+Epoch 5/250
+234/234 ━━━━━━━━━━━━━━━━━━━━ 1699s 7s/step - accuracy: 0.7449 - loss: 1.2918 - val_accuracy: 0.6842 - val_loss: 1.4190
+Epoch 6/250
+234/234 ━━━━━━━━━━━━━━━━━━━━ 1700s 7s/step - accuracy: 0.7539 - loss: 1.2235 - val_accuracy: 0.8421 - val_loss: 0.9457
+Epoch 7/250
+234/234 ━━━━━━━━━━━━━━━━━━━━ 1700s 7s/step - accuracy: 0.7675 - loss: 1.1872 - val_accuracy: 0.6842 - val_loss: 1.0817
+Epoch 8/250
+234/234 ━━━━━━━━━━━━━━━━━━━━ 1697s 7s/step - accuracy: 0.7917 - loss: 1.0569 - val_accuracy: 0.7368 - val_loss: 1.1484
+Epoch 9/250
+234/234 ━━━━━━━━━━━━━━━━━━━━ 1696s 7s/step - accuracy: 0.8025 - loss: 0.9866 - val_accuracy: 0.7368 - val_loss: 1.0863
+Epoch 10/250
+234/234 ━━━━━━━━━━━━━━━━━━━━ 1697s 7s/step - accuracy: 0.8037 - loss: 0.9483 - val_accuracy: 0.8421 - val_loss: 0.9092
+Epoch 11/250
+234/234 ━━━━━━━━━━━━━━━━━━━━ 1695s 7s/step - accuracy: 0.8381 - loss: 0.8416 - val_accuracy: 0.7368 - val_loss: 0.9547
+Epoch 12/250
+234/234 ━━━━━━━━━━━━━━━━━━━━ 1696s 7s/step - accuracy: 0.8582 - loss: 0.7805 - val_accuracy: 0.8421 - val_loss: 0.8190
+Epoch 13/250
+234/234 ━━━━━━━━━━━━━━━━━━━━ 1697s 7s/step - accuracy: 0.8634 - loss: 0.7112 - val_accuracy: 0.7368 - val_loss: 0.7270
+Epoch 14/250
+234/234 ━━━━━━━━━━━━━━━━━━━━ 1706s 7s/step - accuracy: 0.8577 - loss: 0.6808 - val_accuracy: 0.7368 - val_loss: 1.1272
+Epoch 15/250
+234/234 ━━━━━━━━━━━━━━━━━━━━ 1702s 7s/step - accuracy: 0.8781 - loss: 0.6190 - val_accuracy: 0.7895 - val_loss: 0.8556
+Epoch 16/250
+234/234 ━━━━━━━━━━━━━━━━━━━━ 1703s 7s/step - accuracy: 0.9034 - loss: 0.5539 - val_accuracy: 0.7368 - val_loss: 1.0486
+Epoch 17/250
+234/234 ━━━━━━━━━━━━━━━━━━━━ 1702s 7s/step - accuracy: 0.8866 - loss: 0.5383 - val_accuracy: 0.8421 - val_loss: 0.5148
+Epoch 18/250
+234/234 ━━━━━━━━━━━━━━━━━━━━ 1702s 7s/step - accuracy: 0.9066 - loss: 0.4799 - val_accuracy: 0.7895 - val_loss: 0.5882
+Epoch 19/250
+234/234 ━━━━━━━━━━━━━━━━━━━━ 1701s 7s/step - accuracy: 0.9071 - loss: 0.4627 - val_accuracy: 0.8947 - val_loss: 0.5381
+Epoch 20/250
+234/234 ━━━━━━━━━━━━━━━━━━━━ 1701s 7s/step - accuracy: 0.9139 - loss: 0.4109 - val_accuracy: 0.8421 - val_loss: 0.6754
+Epoch 21/250
+234/234 ━━━━━━━━━━━━━━━━━━━━ 1701s 7s/step - accuracy: 0.9295 - loss: 0.3697 - val_accuracy: 0.7368 - val_loss: 0.7637
+Epoch 22/250
+ 37/234 ━━━━━━━━━━━━━━━━━━━━ 23:51 7s/step -srun: Job step aborted: Waiting up to 32 seconds for job step to finish.
+slurmstepd-gpu02: error: *** STEP 163392.0 ON gpu02 CANCELLED AT 2025-12-03T08:58:45 DUE TO TIME LIMIT ***
+slurmstepd-gpu02: error: *** JOB 163392 ON gpu02 CANCELLED AT 2025-12-03T08:58:45 DUE TO TIME LIMIT ***
+[jriveramiranda@login02 jriveramiranda]$ 
